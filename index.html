@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkaro - Find Your Parking Spot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Parkaro</h1>
+        <nav>
+            <ul>
+                <li><a href="#search">Search & Book</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="search">
+            <h2>Find Your Parking Spot</h2>
+            <form id="searchForm">
+                <label for="location">Location:</label>
+                <input type="text" id="location" placeholder="Enter location" required>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" required>
+
+                <label for="time">Time:</label>
+                <input type="time" id="time" required>
+
+                <button type="submit">Search</button>
+            </form>
+            <div id="map">
+                <!-- Map will be displayed here -->
+                <p>Map will be displayed here.</p>
+            </div>
+            <div id="availableSpots" class="hidden">
+                <h3>Available Parking Spots</h3>
+                <ul id="spotList"></ul>
+            </div>
+        </section>
+
+        <section id="bookings">
+            <h2>Your Bookings</h2>
+            <div id="bookingList">
+                <!-- Bookings will be displayed here -->
+                <p>No bookings yet.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Parkaro. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
