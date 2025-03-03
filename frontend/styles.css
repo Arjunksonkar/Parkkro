@@ -2,17 +2,26 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+    /* background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%); */
+    background-color:  #FBEAEB;
     font-family: cursive;
 }
 
 /* Header Styling */
 header {
     display: flex;
-    /* flex-direction: column;
-    align-items: center; */
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Adjust height */
+    background-color: white;
+    z-index: 2000; /* Ensures it's above the map */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* flex-direction: column;*/
+    align-items: center; 
     padding: 20px 0;
-    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    background-image: linear-gradient(-20deg, #0b0b0b 0%, #4e4376 100%);
     border-color: gold;
 }
 
@@ -113,6 +122,7 @@ button {
 }
 
 #map {
+    position: relative;
     width: 100%;
     min-height: 400px;
     height: 100vh;
@@ -211,7 +221,7 @@ button {
 }
 
 .nav-list a:hover {
-    background: gold;
+    background:  #FBEAEB;
     color: black;
     box-shadow: 0 0 10px gold;
 }
@@ -364,25 +374,7 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    height: 500px;
-}
-
-.foot-panel1{
-    background-color: #2c393b;
-    /* color: white; */
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.85rem;
-}
-
-.foot-panel2{
-    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
-    color: #DF6D14;
-    height: 300px;
-    display: flex;
-    justify-content: space-evenly;
+    height: 100px;
 }
 
 ul{
@@ -395,17 +387,6 @@ ul a{
     margin-top: 10px;
     /* color: #dddddd; */
 }
-
-.foot-panel3{
-    /* background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%); */
-    color: #7961ce;
-    border-top: 0.5px solid ;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .logo{
     background-image: url(Images/amazon_logo.png);
     background-size: cover;
