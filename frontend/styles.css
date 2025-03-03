@@ -1,0 +1,434 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+    font-family: cursive;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    /* flex-direction: column;
+    align-items: center; */
+    padding: 20px 0;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    border-color: gold;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+/* #search {
+    display: flex;
+    align-items: center;
+    padding: 2%;
+}
+
+#search #map {
+    justify-content: right;
+    align-items: center;
+}
+
+#book-now {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    background: #f9f9f9;
+    padding: 2%;
+    width: 45%;
+}
+
+.book-container {
+    background: white;
+    padding-left: 2%;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    justify-content: center;
+    width: 60%;
+    max-width: 400px;
+}
+
+.book-container h2 {
+    margin-bottom: 15px;
+}
+
+.book-container input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-container button {
+    width: 95%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.book-container button:hover {
+    background: #0056b3;
+} */
+#book-parking {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    padding-left: 4%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+}
+
+#booking-form input{
+    background-color: rgb(226, 219, 219);
+}
+
+.book-container {
+    background: transparent;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    color: #DF6D14;
+}
+
+#map {
+    width: 100%;
+    min-height: 400px;
+    height: 100vh;
+}
+
+
+#your-bookings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    /* background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%); */
+    padding: 20px;
+}
+
+.bookings-container {
+    background: white;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    color: #ec8b41;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.bookings-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.bookings-container li {
+    background:transparent;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+#clear-bookings {
+    margin-top: 10px;
+    padding: 10px;
+    background: rgb(139, 75, 212);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#clear-bookings:hover {
+    background: rgb(102, 42, 170);
+}
+
+.history-container ul{
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+
+/* Parkaro Title */
+.park {
+    font-size: 36px;
+    font-weight: bold;
+    color: #DF6D14; /* Luxury look */
+    margin-bottom: 15px; /* Space between title and nav */
+    padding-left: 5%;
+    padding-right: 45%;
+}
+
+/* Navigation Styling */
+.nav-com {
+    background: transparent;
+    width: 100%;
+    /* text-align: center; */
+}
+
+.nav-list {
+    list-style: none;
+    padding-left: 2%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.nav-list a {
+    text-decoration: none;
+    display: flex;
+    align-items: end;
+    font-size: 18px;
+    font-weight: bold;
+    color: #DF6D14;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
+.nav-list a:hover {
+    background: gold;
+    color: black;
+    box-shadow: 0 0 10px gold;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    background: transparent;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #d36c1e;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin: 10px 0 5px;
+}
+
+form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px;
+    background: rgb(139, 75, 212);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #302e57;
+}
+
+.hidden {
+    display: none;
+}
+
+.profile-icon {
+    border-radius: 50%;
+}
+
+.profile-icon :hover{
+    background-color: gold;
+}
+
+#logoutBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: rgb(139, 75, 212);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#app {
+    padding: 20px;
+}
+#map {
+    height: 100%;
+    width: 50%;
+    padding-left: 3%;
+    justify-content: right;
+    margin-left: 10%;
+}
+#results {
+    margin-top: 20px;
+}
+/*get locatiion inside the border
+*/.location-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid #007bff; /* Blue border */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Prevents button from sticking out */
+    width: fit-content;
+}
+
+.location-container input {
+    border: none;
+    padding: 10px;
+    flex-grow: 1; /* Input expands to take available space */
+    outline: none;
+}
+
+.location-container button {
+    background: #007bff; /* Blue background */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.location-container button:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
+.history-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #DF6D14;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.history-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.history-container li {
+    padding: 10px;
+    border-bottom: 1px solid #272626;
+}
+
+.history-container button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgb(139, 75, 212);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#clear-history :hover{
+    background:rgb(139, 75, 212);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    color: #179b2b;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 500px;
+}
+
+.foot-panel1{
+    background-color: #2c393b;
+    /* color: white; */
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.foot-panel2{
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    color: #DF6D14;
+    height: 300px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+ul{
+    margin-top: 20px;
+}
+
+ul a{
+    display: block;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    /* color: #dddddd; */
+}
+
+.foot-panel3{
+    /* background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%); */
+    color: #7961ce;
+    border-top: 0.5px solid ;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    background-image: url(Images/amazon_logo.png);
+    background-size: cover;
+    height: 50px;
+    width: 100px;
+}
+
+.foot-panel4{
+    /* background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%); */
+    background: transparent;
+    color: #DF6D14;
+    height: 80px;
+    font-size: 0.9rem;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 2%;
+}
+
+.pages{
+    padding-top: 25px;
+}
+
+.pages a{
+    font-size: 1rem;
+    padding-right: 1%;
+}
