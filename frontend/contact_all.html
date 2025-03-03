@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    
+    <!-- Correct Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        .background-circle {
+            position: absolute;
+            top: 63%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: #e0c3fc;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.5);
+            border: 2px solid black;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .input-container {
+            position: relative;
+            margin: 10px 0;
+        }
+        .input-container input {
+            width: 80%;
+            padding: 10px 40px; /* Space for icon */
+            border: 2px solid black;
+            border-bottom: 4px solid black;
+            border-radius: 5px;
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1), inset -2px -2px 5px rgba(255, 255, 255, 0.5);
+        }
+        .input-container i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: gray;
+        }
+        button {
+            background-color: #c4a5f7;
+            color: white;
+            border: 2px solid black;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3), -3px -3px 8px rgba(255, 255, 255, 0.5);
+        }
+        button:hover {
+            background-color: #a78bfa;
+        }
+    </style>
+</head>
+<body>
+    <h1>We've been waiting for you.</h1>
+    <p>We want to hear from you. Let us know how we can help.</p>
+    <div class="background-circle"></div>
+    <div class="container">
+        <h2>Send us a Message</h2>
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <!-- Required hidden input for access key -->
+            <input type="hidden" name="access_key" value="24a12a61-995a-447a-96a3-15f3e9523cb7">
+        
+            <div class="input-container">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" name="name" placeholder="Enter your name" required>
+            </div>
+        
+            <div class="input-container">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+        
+            <div class="input-container">
+                <i class="fa-solid fa-building"></i>
+                <input type="message" name="business_name" placeholder="Enter Your Message" required>
+            </div>
+        
+            <div class="input-container">
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" name="phone" placeholder="Phone number" required>
+            </div>
+            <p class="home"><a href="index.html"><h5>&#8617 Home</h5></a></p>
+
+            <button type="submit">Submit</button>
+        </form>
+        
+    </div>
+</body>
+</html>
