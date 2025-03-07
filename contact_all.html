@@ -12,10 +12,11 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #f9f9f9;
+            background-color: #FBEAEB;
             margin: 0;
             padding: 0;
             position: relative;
+            color: #433372;
         }
         .background-circle {
             position: absolute;
@@ -24,7 +25,7 @@
             transform: translate(-50%, -50%);
             width: 500px;
             height: 500px;
-            background: #e0c3fc;
+            background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
             border-radius: 50%;
             z-index: -1;
         }
@@ -32,7 +33,7 @@
             max-width: 400px;
             margin: 100px auto;
             padding: 20px;
-            background: white;
+            background: rgb(223, 227, 233);
             border-radius: 10px;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.5);
             border: 2px solid black;
@@ -50,6 +51,11 @@
         .input-container {
             position: relative;
             margin: 10px 0;
+            color: black;
+        }
+
+        .input-container input{
+            background-color: #cbbef5;
         }
         .input-container input {
             width: 80%;
@@ -65,10 +71,10 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 16px;
-            color: gray;
+            color: black;
         }
         button {
-            background-color: #c4a5f7;
+            background-color: #67469b;
             color: white;
             border: 2px solid black;
             padding: 10px;
@@ -78,8 +84,13 @@
             box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3), -3px -3px 8px rgba(255, 255, 255, 0.5);
         }
         button:hover {
-            background-color: #a78bfa;
+            background-color: #524186;
         }
+
+        .home{
+            padding-right: 10%;
+        }
+
     </style>
 </head>
 <body>
@@ -111,9 +122,9 @@
                 <i class="fa-solid fa-phone"></i>
                 <input type="tel" name="phone" placeholder="Phone number" required>
             </div>
-            <p class="home"><a href="index.html"><h5>&#8617 Home</h5></a></p>
-
+            
             <button type="submit">Submit</button>
+            <p class="home"><a href="index.html"><h5>&#8617 Home</h5></a></p>
         </form>
         
     </div>
