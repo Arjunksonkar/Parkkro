@@ -7,10 +7,11 @@
     
     <!-- Correct Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: cursive;
             text-align: center;
             background-color: #FBEAEB;
             margin: 0;
@@ -20,11 +21,11 @@
         }
         .background-circle {
             position: absolute;
-            top: 63%;
+            top: 56%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 600px;
             background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
             border-radius: 50%;
             z-index: -1;
@@ -94,6 +95,46 @@
     </style>
 </head>
 <body>
+    <header>
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+
+        <nav class="nav">
+        <div class="nav-com">
+            <h1 class="park" onclick="window.location.href='index.html'">Parkkro</h1>
+            
+            
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact_all.html">Contact</a></li>
+                <li><a href="signup.html">Signup</a></li>
+                <li><a href="logout.html" class="logout-btn">Logout</a></li>
+            </ul>
+            
+        </div>
+    </nav>
+    
+    <div class="profile-container">
+        <img src="p1.jpg" id="profile-btn" width="40px" height="40px"class="profile-icon">
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="#" id="prof-btn">View Profile</a>
+            <a href="#" id="sett-btn">Settings</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("prof-btn").addEventListener("click", function() {
+            window.location.href = "profile.html";
+        });
+    document.getElementById("sett-btn").addEventListener("click", function() {
+        window.location.href = "setting_all.html";
+    });
+    </script> 
+
+</header>
+<main>
+
     <h1>We've been waiting for you.</h1>
     <p>We want to hear from you. Let us know how we can help.</p>
     <div class="background-circle"></div>
@@ -128,5 +169,6 @@
         </form>
         
     </div>
+</main>
 </body>
 </html>

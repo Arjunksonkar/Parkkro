@@ -1,159 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parkaro - Find Your Parking Spot</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-</head>
-<body>
-    <header>
-        <h1 class="park" onclick="window.location.href='index.html'">Parkaro</h1>
-        <nav>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Parkaro - Find Your Parking Spot</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    </head>
+    <body>
+        <header>
+            <!-- Hamburger Menu Icon -->
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+
+            <nav class="nav">
             <div class="nav-com">
+                <h1 class="park" onclick="window.location.href='index.html'">Parkkro</h1>
+                
+                
                 <ul class="nav-list">
                     <li><a href="index.html">Home</a></li>
-                    <!-- <li><a href="#search">Search & Book</a></li> -->
-                    <!-- <li><a href="#profile">Profile</a></li> -->
                     <li><a href="contact_all.html">Contact</a></li>
                     <li><a href="signup.html">Signup</a></li>
-                    <a href="logout.html" class="logout-btn">Logout</a>
-                    <div class="profile-container">
-                        <img src="photo.jpg" id="profile-btn" width="40px" height="40px"class="profile-icon">
-                    </div>
+                    <li><a href="logout.html" class="logout-btn">Logout</a></li>
                 </ul>
-            </div>
-            <script>
-                document.getElementById("profile-btn").addEventListener("click", function() {
-                    window.location.href = "profile.html";
-                });
-                </script>
                 
+            </div>
         </nav>
-
         
+        <div class="profile-container">
+            <img src="p1.jpg" id="profile-btn" width="40px" height="40px"class="profile-icon">
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="#" id="prof-btn">View Profile</a>
+                <a href="#" id="sett-btn">Settings</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+    
+        <script>
+            document.getElementById("prof-btn").addEventListener("click", function() {
+                window.location.href = "profile.html";
+            });
+        document.getElementById("sett-btn").addEventListener("click", function() {
+            window.location.href = "setting_all.html";
+        });
+        </script> 
+
     </header>
-<!-- 
-    <link rel="stylesheet" href="styles.css"> -->
-    <!-- Leaflet CSS  -->
-     <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /> -->
-     <!-- Leaflet JavaScript -->
-     <!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>  -->
-    <main>
-        <!-- Search Section -->
-        <!-- <section id="search"> -->
-            <!-- <h2>Find Your Parking Spot</h2>
-            <form id="searchForm">
-                <label for="parkingLocation">Parking Location:</label>
-                <div class="location-container">
-                    <input type="text" id="parkingLocation" placeholder="Enter parking location" required>
-                   
-                </div>
-            </form>
-            
-                <label for="date">Date:</label>
-                <input type="date" id="date" required>
 
-                <label for="time">Time:</label>
-                <input type="time" id="time" required>
+    <script>
+        function toggleMenu() {
+            document.querySelector(".nav-list").classList.toggle("show");
+        }
+        </script>
 
-                <button type="submit">Search</button>
-            </form> -->
-            <!-- <section id="book-now">
-                <div class="book-container">
-                    <h2>Book a Parking Spot</h2>
-                    <form id="booking-form">
-                        <input type="text" id="location" placeholder="Enter location" required>
-                        <input type="date" id="date" required>
-                        <input type="time" id="time" required>
-                        <input type="number" id="duration" placeholder="Duration (hours)" required>
-                        <button type="submit">Find Parking</button>
-                    </form>
-                </div>
-            </section>
-            Map will be displayed here -->
-            <!-- <div id="map" style="height: 450px; width: 50%;"></div> -->
+    <main class="main">
 
-            <!-- <div id="availableSpots" class="hidden">
-                <h3>Available Parking Spots</h3>
-                <ul id="spotList"></ul>
-            </div> -->
+        <!-- <section class="parallax">
+            <img src="a5.jpg" id="parallax-image">
+        </section> -->
+
+        <div class="parallax-container">
+            <video id="parallax-video" autoplay muted loop>
+                <source src="v2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <button id="mute-button">🔇</button>
+
+        </div>
+    
+        <!-- Video Background -->
+    <!-- <div class="video-container">
+        <video autoplay loop muted>
+            <source src="v6.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div> -->
+
+    <!-- Main Content -->
+    <!-- <div class="content">
+        <h1>Welcome to Parkkro</h1>
+    </div> -->
+
+    <!-- Additional Content to Demonstrate Parallax -->
+    <!-- <div class="dummy-content">
+        <p>Scroll down to see the parallax effect in action!</p> -->
+    <!-- </div> -->
+
+    </main>
             <section id="book-parking">
-                <div class="book-container">
-                    <h2>Book a Parking Spot</h2>
+                <div class="book-container" >
+
+                    <h2>Book Your Parking Spot</h2>
+                    <div class="searchb">
+                        <input type="text" id="search-box" placeholder="Search location...">
+                        <button id="search-btn">Search</button>
+                    </div>
+
                     <form id="booking-form">
                         <input type="text" id="location" placeholder="Selected Location" readonly required>
                         <input type="date" id="date" required>
                         <input type="time" id="time" required>
-                        <input type="number" id="duration" placeholder="Duration (hours)" required>
-                        <button type="submit">Confirm Booking</button>
+                        <input type="number" id="duration" placeholder="Duration (hrs)" required>
+                        <button type="submit" >Book Now</button>
                     </form>
-                </div>
-                <div id="map"></div>
-            </section>
-        
-            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-            
-        <!-- </section> -->
 
-        <!-- Bookings Section -->
-        <!-- <section id="bookings">
-            <h2>Your Bookings</h2>
-            <div id="bookingList">
-                 <p>No bookings yet.</p>
-            </div>
-        </section> -->
+                    <div id="confirmation-overlay" class="confirmation-overlay">
+                        <div class="confirmation-box">
+                            <div class="checkmark-container">
+                                <div class="checkmark"></div>
+                            </div>
+                            <p>Booking Confirmed!</p>
+                            <img id="car-image" src="p2.jpg" alt="Car Image">
+                        </div>
+                    </div>
+                
+                    <script>
+                        document.getElementById("booking-form").addEventListener("submit", function(event) {
+                            event.preventDefault(); // Prevent default form submission
+                
+                            // Show the confirmation overlay
+                            document.getElementById("confirmation-overlay").style.display = "flex";
+                        });
+                
+                        // Hide confirmation when clicking anywhere on it
+                        document.getElementById("confirmation-overlay").addEventListener("click", function() {
+                            this.style.display = "none"; // Hide overlay
+                        });
+                    </script>
+
+                </div>
+
+                <div id="map"></div>  
+                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+            </section>
+            
+
         <section id="your-bookings">
             <div class="bookings-container">
+
                 <h2>Your Bookings</h2>
                 <ul id="booking-list">
                     <!-- Bookings will be dynamically added here -->
                 </ul>
+
                 <button id="clear-bookings">Clear Bookings</button>
             </div>
+
         </section>
-        
-        <!-- Profile Section -->
-        <!-- <section id="profile">
-            <h2>Your Profile</h2>
-            <div id="userInfo">
-                <p><strong>Name:</strong> <span id="userName">John Doe</span></p>
-                <p><strong>Email:</strong> <span id="userEmail">john.doe@example.com</span></p>
-                <p><strong>Phone:</strong> <span id="userPhone">+123 456 7890</span></p>
-                <button id="editProfileBtn">Edit Profile</button>
-            </div>
-
-            <div id="editProfileForm" class="hidden">
-                <h3>Edit Profile</h3>
-                <form id="profileForm">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" value="John Doe" required>
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" value="john.doe@example.com" required>
-
-                    <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" value="+123 456 7890" required>
-
-                    <button type="submit">Save Changes</button>
-                    <button type="button" id="cancelEditBtn">Cancel</button>
-                </form>
-            </div>
-        </section> -->
 
         <section id="bookingHistory">
-            <!-- <h2>Booking History</h2>
-            <div id="historyList">
-                 <p>No bookings found.</p>
-            </div> -->
-             <!-- Booking History Section -->
             <section class="history-container">
+
                 <h2>Booking History</h2>
                 <ul id="booking-history">
                     <!-- show booking history -->
                 </ul>
+
                 <button id="clear-history">Clear History</button>
+
             </section>
 
             <script>
@@ -178,29 +184,28 @@
                     location.reload();
                 });
             </script>
-
             
         </section>
 
-        <!-- Logout Section
-        <section id="logout">
-            <button id="logoutBtn">Logout</button>
-        </section> -->
-    </main>
 
     <footer>
          
         
-        <div class="foot-panel4">
+        <div class="foot-panel">
+
             <div class="pages">
                 <a>Conditions of Use</a>
                 <a>Privacy Notice</a>
-                
             </div>
-            <p>&copy; 2023 Parkaro. All rights reserved.</p>
+
+            <p>&copy; 2025 Parkkro | All rights reserved.</p>
+
         </div>
+
     </footer>
+
     <script src="script.js"></script>
     <script src="app.js"></script>
+
 </body>
 </html>
