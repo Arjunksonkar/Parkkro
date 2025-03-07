@@ -4,95 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="profile.css">
 </head>
-<body>
+<body class="body">
         
     <header>
-        <h1 class="park" onclick="window.location.href='index.html'">Parkaro</h1>
-            <nav>
-                <div class="nav-com">
-                    <ul class="nav-list">
-                        <li><a href="index.html">Home</a></li>
-                        <!-- <li><a href="#search">Search & Book</a></li> -->
-                        <!-- <li><a href="#profile">Profile</a></li> -->
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="signup.html">Signup</a></li>
-                        <a href="logout.html" class="logout-btn">Logout</a>
-                        <div class="profile-container">
-                            <img src="photo.jpg" id="profile-btn" width="40px" height="40px"class="profile-icon">
-                            
-                        </div>
-                    </ul>
-                </div>
-                <script>
-                    document.getElementById("profile-btn").addEventListener("click", function() {
-                        window.location.href = "profile.html";
-                    });
-                    </script>
-                    
-            </nav>
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+
+        <nav class="nav">
+            <div class="nav-com">
+                <h1 class="park" onclick="window.location.href='index.html'">Parkkro</h1>
+
+                
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact_all.html">Contact</a></li>
+                    <li><a href="signup.html">Signup</a></li>
+                    <li><a href="logout.html" class="logout-btn">Logout</a></li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <div class="profile-container">
+            <img src="p1.jpg" id="profile-btn" width="40px" height="40px"class="profile-icon">
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="#" id="prof-btn">View Profile</a>
+                <a href="#" id="sett-btn">Settings</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
     
-            
+        <script>
+            document.getElementById("prof-btn").addEventListener("click", function() {
+                window.location.href = "profile.html";
+        });
+        document.getElementById("sett-btn").addEventListener("click", function() {
+            window.location.href = "setting_all.html";
+        });
+        </script> 
+
     </header>
   
 
-    <div class="profile-card">
-        <img src="photo.jpg" alt="User Profile"  class="profile-pic">
-        <h2 id="user-name">John Doe</h2>
-        <p>Email: <span id="user-email">johndoe@example.com</span></p>
-        <p>Phone: <span id="user-phone">+1234567890</span></p>
-        <p>Joined: <span id="user-joined">01 Jan 2024</span></p>
-        <div class="editprofile">
-            <button onclick="editProfile()">Edit Profile</button>
-            <script>
-                function editProfile() {
-                    let newName = prompt("Enter your name:");
-                    let newEmail = prompt("Enter your email:");
-                    let newPhone = prompt("Enter your phone:");
-            
-                    let updatedUser = { 
-                        name: newName, 
-                        email: newEmail, 
-                        phone: newPhone, 
-                        joined: new Date().toLocaleDateString() 
-                    };
-            
-                    localStorage.setItem("user", JSON.stringify(updatedUser));
-                    location.reload();
-                }
-            </script>
-        </div>
-    </div>
-
-    <script>
-        // Load user data from localStorage
-        document.addEventListener("DOMContentLoaded", function () {
-            let user = JSON.parse(localStorage.getItem("user")) || {
-                name: "John Doe",
-                email: "johndoe@example.com",
-                phone: "+1234567890",
-                joined: "01 Jan 2024"
-            };
-
-            document.getElementById("user-name").textContent = user.name;
-            document.getElementById("user-email").textContent = user.email;
-            document.getElementById("user-phone").textContent = user.phone;
-            document.getElementById("user-joined").textContent = user.joined;
-        });
-    </script>
+    
     <footer>
+         
+        
         <div class="foot-panel4">
+
             <div class="pages">
                 <a>Conditions of Use</a>
                 <a>Privacy Notice</a>
-                
             </div>
-            <p>&copy; 2023 Parkaro. All rights reserved.</p>
+
+            <p>&copy; 2025 Parkkro | All rights reserved.</p>
+
         </div>
+
     </footer>
 
-    
+    <script src="profile.js"></script>
 </body>
 </html>
