@@ -2,17 +2,37 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
     background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%);
+=======
+    /* background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%); */
+    background-color:  #FBEAEB;
+>>>>>>> 7e2dd1fcc8508057e0192b1e016a12f65ac30da6
     font-family: cursive;
 }
 
 /* Header Styling */
 header {
     display: flex;
+<<<<<<< HEAD
     /* flex-direction: column;
     align-items: center; */
     padding: 20px 0;
     background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+=======
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Adjust height */
+    background-color: white;
+    z-index: 2000; /* Ensures it's above the map */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* flex-direction: column;*/
+    align-items: center; 
+    padding: 20px 0;
+    background-image: linear-gradient(-20deg, #0b0b0b 0%, #4e4376 100%);
+>>>>>>> 7e2dd1fcc8508057e0192b1e016a12f65ac30da6
     border-color: gold;
 }
 
@@ -113,6 +133,10 @@ button {
 }
 
 #map {
+<<<<<<< HEAD
+=======
+    position: relative;
+>>>>>>> 7e2dd1fcc8508057e0192b1e016a12f65ac30da6
     width: 100%;
     min-height: 400px;
     height: 100vh;
@@ -211,7 +235,11 @@ button {
 }
 
 .nav-list a:hover {
+<<<<<<< HEAD
     background: gold;
+=======
+    background:  #FBEAEB;
+>>>>>>> 7e2dd1fcc8508057e0192b1e016a12f65ac30da6
     color: black;
     box-shadow: 0 0 10px gold;
 }
@@ -364,6 +392,7 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+<<<<<<< HEAD
     height: 500px;
 }
 
@@ -383,6 +412,9 @@ footer {
     height: 300px;
     display: flex;
     justify-content: space-evenly;
+=======
+    height: 100px;
+>>>>>>> 7e2dd1fcc8508057e0192b1e016a12f65ac30da6
 }
 
 ul{
@@ -395,6 +427,7 @@ ul a{
     margin-top: 10px;
     /* color: #dddddd; */
 }
+<<<<<<< HEAD
 
 .foot-panel3{
     /* background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%); */
@@ -406,6 +439,8 @@ ul a{
     align-items: center;
 }
 
+=======
+>>>>>>> 7e2dd1fcc8508057e0192b1e016a12f65ac30da6
 .logo{
     background-image: url(Images/amazon_logo.png);
     background-size: cover;
