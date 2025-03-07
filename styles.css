@@ -1,0 +1,698 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-image: linear-gradient(to top, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%); */
+    background-color:  #FBEAEB;
+    font-family: cursive;
+}
+
+/* Minimalist Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(-20deg, #0b0b0b 0%, #4e4376 100%);
+    border-bottom: 3px solid black;
+    padding: 0 0;
+    z-index: 2000;
+}
+
+/* "Parkaro" aligned left */
+.park {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(186, 203, 226);
+    cursor: pointer;
+    padding-left: 130%;
+    padding-right: 115%;
+}
+
+/* Navbar container */
+.nav-com {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
+    justify-content: center; /* Centers the nav items */
+}
+
+/* Navigation List */
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 0;
+    /* padding-left: 0; */
+    padding-right: 22px;
+}
+
+.nav-list a {
+    text-decoration: none;
+    display: flex;
+    align-items: end;
+    font-size: 18px;
+    font-weight: bold;
+    color: lightsteelblue;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
+.nav-list a:hover {
+    background: #FBEAEB;
+    color: black;
+    box-shadow: 0 0 15px gold;
+}
+
+/* Profile Section (Always on the right) */
+.profile-container {
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+    position: relative;
+    padding-right: 2%;
+}
+
+.profile-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.profile-icon :hover{
+    background-color: gold;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: rgb(156, 184, 221);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 150px;
+    text-align: left;
+    padding: 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: #4d4177;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background: #FBEAEB;
+    color: black;
+    box-shadow: 0 0 15px gold;
+    /* background: #ddd; */
+}
+
+.show {
+    display: block;
+}
+
+.profile-container:hover .dropdown-menu {
+    display: block;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    color: lightsteelblue;
+    cursor: pointer;
+    margin-left: 20px;
+    padding-right: 0%;
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+    .nav-list {
+        display: none; /* Hide the menu initially */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .nav-list li {
+        margin: 10px 0;
+    }
+
+    .nav-list a {
+        color: white;
+        font-size: 20px;
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger menu */
+    }
+
+    /* Show menu when active */
+    .nav-list.active {
+        display: flex;
+    }
+}
+
+.main{
+    padding-top: 95px;
+}
+
+.parallax-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#parallax-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+    border-radius: 10px;
+}
+
+#mute-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#mute-button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1; /* Ensures video stays in the background */
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Content Section */
+.content {
+    position: relative;
+    width: 80vw;
+    height: 60vh;
+    margin: 100px auto; /* Adds space from top */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: lightskyblue;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Dummy content for scrolling effect */
+.dummy-content {
+    height: 150vh; /* Adds more scrolling space to show the parallax effect */
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* .content {
+    background: url('a6.jpg') no-repeat center center/cover;
+    width: 100%;  80% of viewport width
+    height: 60vh; 60% of viewport height
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(164, 173, 185);
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 10px; Rounded edges
+    border-bottom-right-radius: 10px; Rounded edges
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); Soft shadow
+    margin-top: 20px; Adds space from top 
+}*/
+
+/* .parallax {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+
+.parallax img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    transition: transform 0.1s linear;
+} */
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.searchb{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-bottom: 2%;
+
+}
+
+.searchb input {
+    padding: 10px;
+    padding-right: 10px;
+    background: rgb(178, 156, 201);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    width: 78%;
+    
+}
+
+.searchb button {
+    padding: 10px;
+    padding-left: 10px;
+    background: rgb(143, 114, 175);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    
+}
+
+#book-parking {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    padding-left: 4%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: transparent;
+}
+
+#booking-form input{
+    background-color: rgb(226, 219, 219);
+}
+
+.book-container {
+    background: transparent;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    color: rgb(193, 211, 235);
+}
+
+#map {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    height: 100vh;
+    border-color: #0b0b0b;
+}
+
+
+#your-bookings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    /* background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%); */
+    padding: 20px;
+}
+
+.bookings-container {
+    background: white;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    /* background: rgba(0, 0, 0, 0.4); Semi-transparent background */
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.bookings-container h2{
+    color: rgb(178, 197, 221);
+}
+
+.bookings-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.bookings-container li {
+    background:transparent;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+#clear-bookings {
+    margin-top: 10px;
+    padding: 10px;
+    background: rgb(139, 75, 212);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#clear-bookings:hover {
+    background: rgb(102, 42, 170);
+}
+
+.history-container ul{
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    background: transparent;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: lightsteelblue;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin: 10px 0 5px;
+}
+
+form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px;
+    background: rgb(139, 75, 212);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #302e57;
+}
+
+/* Fullscreen Confirmation Overlay */
+.confirmation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dimmed background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+    display: none;
+    z-index: 1500;
+}
+
+.confirmation-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+    max-width: 400px;
+}
+
+/* Stylish Animated Checkmark */
+.checkmark-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    background: #4CAF50;
+    border-radius: 50%;
+    position: relative;
+    margin: auto;
+}
+
+.checkmark {
+    width: 40px;
+    height: 20px;
+    border-left: 6px solid white;
+    border-bottom: 6px solid white;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    opacity: 0;
+    animation: drawCheck 0.5s ease forwards 0.3s;
+}
+
+@keyframes drawCheck {
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-45deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(-45deg);
+    }
+}
+
+/* Car Image in Confirmation */
+#car-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.hidden {
+    display: none;
+}
+
+#logoutBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: rgb(139, 75, 212);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#app {
+    padding: 20px;
+}
+
+#map {
+    height: 100%;
+    width: 50%;
+    padding-left: 3%;
+    justify-content: right;
+    margin-left: 10%;
+}
+#results {
+    margin-top: 20px;
+}
+
+/*get locatiion inside the border
+*/.location-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid #007bff; /* Blue border */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Prevents button from sticking out */
+    width: fit-content;
+}
+
+.location-container input {
+    border: none;
+    padding: 10px;
+    flex-grow: 1; /* Input expands to take available space */
+    outline: none;
+}
+
+.location-container button {
+    background: #007bff; /* Blue background */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.location-container button:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
+
+.history-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 15px;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    /* background: rgba(0, 0, 0, 0.4); Semi-transparent background */
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.history-container h2{
+    color: rgb(187, 205, 228);
+}
+
+.history-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.history-container li {
+    padding: 10px;
+    border-bottom: 1px solid #272626;
+}
+
+.history-container button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgb(139, 75, 212);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#clear-history :hover{
+    background:rgb(139, 75, 212);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+    color: #179b2b;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    height: 100px;
+}
+
+.foot-panel{
+    /* background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%); */
+    background: transparent;
+    color: lightsteelblue;
+    height: 80px;
+    font-size: 0.9rem;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 2%;
+}
+
+.pages{
+    padding-top: 25px;
+}
+
+.pages a{
+    font-size: 1rem;
+    padding-right: 1%;
+}
+
+/* ul{
+    margin-top: 20px;
+}
+
+ul a{
+    display: block;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    color: #dddddd;
+} */
+
+.logo{
+    background-image: url(Images/amazon_logo.png);
+    background-size: cover;
+    height: 50px;
+    width: 100px;
+}

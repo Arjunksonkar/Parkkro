@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logging Out...</title>
+    <script>
+        // Clear user session data
+        localStorage.removeItem("user"); // Remove user info
+        localStorage.removeItem("bookings"); // Optional: Clear bookings
+
+        // Redirect to login page after 2 seconds
+        setTimeout(function() {
+            window.location.href = "login.html"; 
+        }, 2000);
+    </script>
+</head>
+<body>
+    <h2>Logging you out...</h2>
+    <p>You will be redirected shortly.</p>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body class="body">
+        
+    <header>
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+
+        <nav class="nav">
+            <div class="nav-com">
+                <h1 class="park" onclick="window.location.href='index.html'">Parkkro</h1>
+
+                
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact_all.html">Contact</a></li>
+                    <li><a href="signup.html">Signup</a></li>
+                    <li><a href="logout.html" class="logout-btn">Logout</a></li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <div class="profile-container">
+            <img src="p1.jpg" id="profile-btn" width="40px" height="40px"class="profile-icon">
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="#" id="prof-btn">View Profile</a>
+                <a href="#" id="sett-btn">Settings</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+    
+        <script>
+            document.getElementById("prof-btn").addEventListener("click", function() {
+                window.location.href = "profile.html";
+        });
+        document.getElementById("sett-btn").addEventListener("click", function() {
+            window.location.href = "setting_all.html";
+        });
+        </script> 
+
+    </header>
+  
+
+    
+    <footer>
+         
+        
+        <div class="foot-panel4">
+
+            <div class="pages">
+                <a>Conditions of Use</a>
+                <a>Privacy Notice</a>
+            </div>
+
+            <p>&copy; 2025 Parkkro | All rights reserved.</p>
+
+        </div>
+
+    </footer>
+
+    <script src="profile.js"></script>
+</body>
+</html>
