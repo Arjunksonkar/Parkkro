@@ -1,5 +1,14 @@
-// Initialize Map
-var map = L.map('map').setView([28.6139, 77.2090], 12); // Default: New Delhi
+// Initialize Map with custom options
+var map = L.map('map', {
+    zoomControl: false,
+    minZoom: 3,
+    maxZoom: 18
+}).setView([28.6139, 77.2090], 12);
+
+// Custom zoom control
+L.control.zoom({
+    position: 'bottomright'
+}).addTo(map);
 
 // Add OpenStreetMap Tiles
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -7,65 +16,130 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 let marker;
+let isFullscreen = false;
 
-// Function to select location from map click
+// Create map overlay
+const mapOverlay = document.createElement('div');
+mapOverlay.className = 'map-overlay';
+document.body.appendChild(mapOverlay);
+
+// Function to toggle fullscreen
+function toggleFullscreen(event) {
+    const mapElement = document.getElementById('map');
+    
+    // Don't toggle if clicking on popup or marker
+    if (event && (
+        event.target.classList.contains('leaflet-popup') || 
+        event.target.closest('.leaflet-popup') || 
+        event.target.closest('.leaflet-marker-icon')
+    )) {
+        return;
+    }
+    
+    isFullscreen = !isFullscreen;
+    
+    if (isFullscreen) {
+        mapElement.classList.add('fullscreen');
+        mapOverlay.classList.add('active');
+        setTimeout(() => {
+            map.invalidateSize();
+            if (marker) {
+                map.setView(marker.getLatLng(), map.getZoom());
+            }
+        }, 300);
+    } else {
+        mapElement.classList.remove('fullscreen');
+        mapOverlay.classList.remove('active');
+        setTimeout(() => map.invalidateSize(), 300);
+    }
+}
+
+// Map click handler
 map.on('click', function(e) {
-    let lat = e.latlng.lat.toFixed(5);
-    let lng = e.latlng.lng.toFixed(5);
+    const lat = e.latlng.lat.toFixed(5);
+    const lng = e.latlng.lng.toFixed(5);
 
-    // Fetch place name using Nominatim API
+    // Remove previous marker
+    if (marker) map.removeLayer(marker);
+
+    // Add new marker
+    marker = L.marker([lat, lng]).addTo(map);
+
+    // Fetch place details
     fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
         .then(response => response.json())
         .then(data => {
-            let placeName = data.display_name || `Lat: ${lat}, Lng: ${lng}`;
-
-            // Update input fields
+            const placeName = data.display_name || `Lat: ${lat}, Lng: ${lng}`;
+            
+            // Update form fields
             document.getElementById("location").value = placeName;
             document.getElementById("search-box").value = placeName;
 
-            // Remove previous marker if exists
-            if (marker) map.removeLayer(marker);
+            // Show simple popup with just the location name
+            marker.bindPopup(`<div class="map-popup">${placeName}</div>`).openPopup();
 
-            // Add new marker
-            marker = L.marker([lat, lng]).addTo(map)
-                .bindPopup(placeName)
-                .openPopup();
+            // Close fullscreen if marker is clicked in fullscreen mode
+            marker.on('click', () => {
+                if (isFullscreen) toggleFullscreen();
+            });
         })
-        .catch(error => console.log("Error fetching location:", error));
+        .catch(error => console.error("Error fetching location:", error));
 });
 
-// Function to search location
+// Add click handler to map container to open fullscreen
+document.getElementById('map').addEventListener('click', function(event) {
+    if (!isFullscreen && !event.target.classList.contains('leaflet-popup') && 
+        !event.target.closest('.leaflet-popup') && 
+        !event.target.closest('.leaflet-marker-icon')) {
+        toggleFullscreen();
+    }
+});
+
+// Close fullscreen when clicking overlay
+mapOverlay.addEventListener('click', function(event) {
+    if (event.target === mapOverlay && isFullscreen) {
+        toggleFullscreen();
+    }
+});
+
+// Enhanced search functionality
 function searchLocation() {
-    let searchQuery = document.getElementById("search-box").value;
+    const searchQuery = document.getElementById("search-box").value;
     if (!searchQuery) return;
 
-    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}`)
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}`)
         .then(response => response.json())
         .then(data => {
             if (data.length > 0) {
-                let lat = data[0].lat;
-                let lon = data[0].lon;
-                let placeName = data[0].display_name;
+                const location = data[0];
+                const lat = parseFloat(location.lat);
+                const lon = parseFloat(location.lon);
 
-                // Update input fields
-                document.getElementById("location").value = placeName;
-                document.getElementById("search-box").value = placeName;
-
-                // Move map to location
-                map.setView([lat, lon], 14);
-
-                // Remove previous marker if exists
+                // Remove previous marker
                 if (marker) map.removeLayer(marker);
 
                 // Add new marker
-                marker = L.marker([lat, lon]).addTo(map)
-                    .bindPopup(placeName)
-                    .openPopup();
+                marker = L.marker([lat, lon]).addTo(map);
+                
+                // Update form fields
+                document.getElementById("location").value = location.display_name;
+                document.getElementById("search-box").value = location.display_name;
+
+                // Center map on location
+                map.setView([lat, lon], 16);
+
+                // Show simple popup with just the location name
+                marker.bindPopup(`<div class="map-popup">${location.display_name}</div>`).openPopup();
+
+                // Close fullscreen if marker is clicked in fullscreen mode
+                marker.on('click', () => {
+                    if (isFullscreen) toggleFullscreen();
+                });
             } else {
                 alert("Location not found! Try a different search.");
             }
         })
-        .catch(error => console.log("Error searching location:", error));
+        .catch(error => console.error("Error searching location:", error));
 }
 
 // Attach event listener to search button
@@ -250,15 +324,28 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function () {
     const profileBtn = document.getElementById("profile-btn");
     const dropdownMenu = document.getElementById("dropdown-menu");
+    let isDropdownOpen = false;
 
-    profileBtn.addEventListener("click", function () {
+    // Toggle dropdown on click
+    profileBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        isDropdownOpen = !isDropdownOpen;
         dropdownMenu.classList.toggle("show");
     });
 
+    // Close dropdown when clicking outside
     document.addEventListener("click", function (event) {
-        if (!profileBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        if (!profileBtn.contains(event.target) && 
+            !dropdownMenu.contains(event.target) && 
+            !event.target.closest('.dropdown-menu')) {
             dropdownMenu.classList.remove("show");
+            isDropdownOpen = false;
         }
+    });
+
+    // Prevent dropdown from closing when clicking inside it
+    dropdownMenu.addEventListener("click", function (e) {
+        e.stopPropagation();
     });
 });
 
