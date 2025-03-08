@@ -794,3 +794,67 @@ ul a{
     height: 50px;
     width: 100px;
 }
+
+/* Dark Theme Styles */
+.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-theme header {
+    background: linear-gradient(-20deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.dark-theme .book-container,
+.dark-theme .bookings-container,
+.dark-theme .history-container {
+    background-image: linear-gradient(-20deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.dark-theme .dropdown-menu {
+    background: linear-gradient(-20deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.dark-theme .dropdown-menu::before {
+    background: linear-gradient(-20deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.dark-theme .nav-list.active {
+    background: linear-gradient(-20deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.dark-theme footer {
+    background-image: linear-gradient(-20deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.dark-theme .searchb input {
+    background: #2d2d2d;
+    color: #fff;
+}
+
+.dark-theme .searchb button {
+    background: #3d3d3d;
+    color: #fff;
+}
+
+.dark-theme #booking-form input {
+    background: #2d2d2d;
+    color: #fff;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+#theme-toggle i {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover i {
+    transform: rotate(360deg);
+}

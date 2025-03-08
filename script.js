@@ -374,7 +374,32 @@ muteButton.addEventListener("click", function() {
         muteButton.textContent = "🔊 Unmute";
     } else {
         video.muted = true;
-        muteButton.textContent = "🔇 Mute";
+        muteButton.textContent = "�� Mute";
+    }
+});
+
+// Theme Switching
+document.addEventListener("DOMContentLoaded", function() {
+    const themeToggle = document.getElementById("theme-toggle");
+    
+    // Check for saved theme preference
+    const currentTheme = localStorage.getItem("theme") || "light";
+    document.body.classList.toggle("dark-theme", currentTheme === "dark");
+    updateThemeToggle(currentTheme === "dark");
+
+    // Theme toggle click handler
+    themeToggle.addEventListener("click", function(e) {
+        e.preventDefault();
+        const isDark = document.body.classList.toggle("dark-theme");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        updateThemeToggle(isDark);
+    });
+
+    // Update toggle button text and icon
+    function updateThemeToggle(isDark) {
+        const icon = themeToggle.querySelector("i");
+        icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
+        themeToggle.innerHTML = `${icon.outerHTML}${isDark ? "Light Mode" : "Dark Mode"}`;
     }
 });
 

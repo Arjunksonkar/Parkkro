@@ -8,6 +8,228 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
+        /* Header and Navigation Styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(-20deg, #0b0b0b 0%, #4e4376 100%);
+            border-bottom: 3px solid black;
+            padding: 0.7rem 2rem;
+            z-index: 2000;
+        }
+
+        /* "Parkaro" aligned left */
+        .park {
+            font-size: 30px;
+            font-weight: bold;
+            color: rgb(186, 203, 226);
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar container */
+        .nav {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .nav-com {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        /* Navigation List */
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: lightsteelblue;
+            padding: 10px 15px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .nav-list a:hover {
+            background: #FBEAEB;
+            color: black;
+            box-shadow: 0 0 15px gold;
+        }
+
+        /* Profile Section (Always on the right) */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            position: relative;
+        }
+
+        .profile-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            object-fit: cover;
+        }
+
+        .profile-icon:hover {
+            transform: scale(1.05);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 120%;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            padding: 0.8rem 0;
+            min-width: 240px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            padding: 0.9rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            gap: 12px;
+        }
+
+        .dropdown-menu a i {
+            width: 20px;
+            text-align: center;
+            color: #2b5876;
+            font-size: 1.1rem;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #2b5876;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            color: lightsteelblue;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.7rem 1rem;
+            }
+
+            .hamburger {
+                display: block;
+                order: -1;
+            }
+
+            .nav-com {
+                gap: 2rem;
+            }
+
+            .park {
+                font-size: 2rem;
+            }
+
+            .nav-list {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background: rgba(0, 0, 0, 0.9);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-list.active {
+                display: flex;
+                left: 0;
+            }
+
+            .nav-list a {
+                color: white;
+                font-size: 20px;
+            }
+
+            .profile-icon {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Dark Theme Styles */
+        body.dark-theme header {
+            background: linear-gradient(-20deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        body.dark-theme .park {
+            color: #ffffff;
+        }
+
+        body.dark-theme .dropdown-menu {
+            background: #1a1a1a;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-theme .dropdown-menu a {
+            color: #ffffff;
+        }
+
+        body.dark-theme .dropdown-menu a:hover {
+            background: #2d2d2d;
+        }
+
+        body.dark-theme .hamburger {
+            color: #ffffff;
+        }
+
+        body.dark-theme .nav-list.active {
+            background: rgba(0, 0, 0, 0.95);
+        }
+
         .contact-page {
             padding-top: 80px;
             max-width: 1200px;
@@ -670,34 +892,82 @@
                 min-height: auto;
             }
         }
-
-        /* Remove all popup styles */
     </style>
 </head>
 <body>
     <header>
+        <!-- Hamburger Menu Icon -->
         <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+
         <nav class="nav">
             <div class="nav-com">
                 <h1 class="park" onclick="window.location.href='index.html'">Parkkro</h1>
+                
                 <ul class="nav-list">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="signup.html">Signup</a></li>
+                    <li><a href="sign_up_in.html">Signup</a></li>
                     <li><a href="logout.html" class="logout-btn">Logout</a></li>
                 </ul>
             </div>
-        </nav>
         
-        <div class="profile-container">
-            <img src="p1.jpg" id="profile-btn" class="profile-icon">
-            <div class="dropdown-menu" id="dropdown-menu">
-                <a href="#" id="prof-btn">View Profile</a>
-                <a href="#" id="sett-btn">Settings</a>
-                <a href="#">Logout</a>
+            <div class="profile-container">
+                <img src="p1.jpg" alt="Profile" class="profile-icon" id="profile-btn">
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="profile.html"><i class="fas fa-user"></i>My Profile</a>
+                    <a href="settings.html"><i class="fas fa-cog"></i>Settings</a>
+                    <a href="my-bookings.html"><i class="fas fa-ticket-alt"></i>My Bookings</a>
+                    <hr>
+                    <a href="#" id="theme-toggle"><i class="fas fa-moon"></i>Dark Mode</a>
+                    <a href="help.html"><i class="fas fa-question-circle"></i>Help & Support</a>
+                    <a href="logout.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                </div>
             </div>
-        </div>
+        </nav>
     </header>
+
+    <script>
+        // Profile dropdown functionality
+        const profileBtn = document.getElementById('profile-btn');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!dropdownMenu.contains(e.target) && !profileBtn.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            body.classList.toggle('dark-theme');
+            const isDark = body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeIcon.classList.toggle('fa-moon');
+            themeIcon.classList.toggle('fa-sun');
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.querySelector('.nav-list').classList.toggle('active');
+        }
+    </script>
 
     <main class="contact-page">
         <div class="contact-header">
@@ -955,23 +1225,6 @@
         document.getElementById('get-directions').addEventListener('click', function() {
             const address = encodeURIComponent(document.getElementById('office-address').textContent);
             window.open(`https://www.google.com/maps/dir/?api=1&destination=${address}`);
-        });
-
-        // Profile dropdown functionality
-        document.getElementById("prof-btn").addEventListener("click", function() {
-            window.location.href = "profile.html";
-        });
-        document.getElementById("sett-btn").addEventListener("click", function() {
-            window.location.href = "setting_all.html";
-        });
-
-        // Window resize handler with debounce
-        let resizeTimeout;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                map.invalidateSize();
-            }, 250);
         });
     </script>
 </body>
