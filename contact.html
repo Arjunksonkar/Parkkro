@@ -20,7 +20,7 @@
             height: 60px;
             background: linear-gradient(-20deg, #0b0b0b 0%, #4e4376 100%);
             border-bottom: 3px solid black;
-            padding: 0.7rem 2rem;
+            padding: 0 0;
             z-index: 2000;
         }
 
@@ -30,22 +30,17 @@
             font-weight: bold;
             color: rgb(186, 203, 226);
             cursor: pointer;
-            margin: 0;
-            padding: 0;
+            padding-left: 130%;
+            padding-right: 115%;
         }
 
         /* Navbar container */
-        .nav {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            justify-content: space-between;
-        }
-
         .nav-com {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            width: 100%;
+            flex-grow: 1;
+            justify-content: center; /* Centers the nav items */
         }
 
         /* Navigation List */
@@ -55,13 +50,13 @@
             gap: 20px;
             align-items: center;
             margin: 0;
-            padding: 0;
+            padding-right: 22px;
         }
 
         .nav-list a {
             text-decoration: none;
             display: flex;
-            align-items: center;
+            align-items: end;
             font-size: 18px;
             font-weight: bold;
             color: lightsteelblue;
@@ -80,22 +75,19 @@
         .profile-container {
             display: flex;
             align-items: center;
-            margin-left: auto;
+            margin-left: 0;
             position: relative;
+            padding-right: 2%;
         }
 
         .profile-icon {
-            width: 45px;
-            height: 45px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
             object-fit: cover;
-        }
-
-        .profile-icon:hover {
-            transform: scale(1.05);
         }
 
         .dropdown-menu {
@@ -104,9 +96,9 @@
             right: 0;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-            padding: 0.8rem 0;
-            min-width: 240px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            min-width: 220px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
@@ -122,11 +114,10 @@
         .dropdown-menu a {
             display: flex;
             align-items: center;
-            padding: 0.9rem 1.5rem;
+            padding: 0.8rem 1.5rem;
             color: #333;
             text-decoration: none;
-            font-size: 1.05rem;
-            font-weight: 500;
+            font-size: 1rem;
             transition: all 0.3s ease;
             gap: 12px;
         }
@@ -145,58 +136,38 @@
 
         .hamburger {
             display: none;
-            font-size: 24px;
-            color: lightsteelblue;
+            font-size: 1.8rem;
             cursor: pointer;
-            margin-right: 20px;
+            color: #333;
+            margin-left: 0.5rem;
         }
 
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
-            header {
-                padding: 0.7rem 1rem;
-            }
-
             .hamburger {
                 display: block;
-                order: -1;
-            }
-
-            .nav-com {
-                gap: 2rem;
-            }
-
-            .park {
-                font-size: 2rem;
             }
 
             .nav-list {
-                display: none;
                 position: fixed;
                 top: 60px;
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 60px);
-                background: rgba(0, 0, 0, 0.9);
+                background: white;
                 flex-direction: column;
                 align-items: center;
                 padding: 2rem;
                 transition: left 0.3s ease;
+                gap: 1.5rem;
             }
 
             .nav-list.active {
-                display: flex;
                 left: 0;
             }
 
             .nav-list a {
-                color: white;
-                font-size: 20px;
-            }
-
-            .profile-icon {
-                width: 40px;
-                height: 40px;
+                font-size: 1.2rem;
             }
         }
 
@@ -224,10 +195,6 @@
 
         body.dark-theme .hamburger {
             color: #ffffff;
-        }
-
-        body.dark-theme .nav-list.active {
-            background: rgba(0, 0, 0, 0.95);
         }
 
         .contact-page {

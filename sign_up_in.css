@@ -3,7 +3,6 @@
 * {
     margin: 0;
     padding: 0;
-    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 body {
@@ -23,36 +22,24 @@ body {
 }
 
 .button {
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    border-radius: 25px;
+    border: 1px solid #fff;
+    border-radius: 20px;
     color: #fff;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 1px;
     padding: 15px 60px;
     text-decoration: none;
     text-transform: uppercase;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
 }
 
 input[type="email"], input[type="password"], input[type="text"] {
     background: #f4f8f7;
-    border: 2px solid transparent;
-    border-radius: 8px;
+    border: none;
     font-weight: 300;
-    margin: 8px;
-    padding: 12px 15px;
+    margin: 5px;
+    padding: 10px;
     width: 280px;
-    transition: all 0.3s ease;
-}
-
-input[type="email"]:focus, 
-input[type="password"]:focus, 
-input[type="text"]:focus {
-    border-color: #3aa7b1;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(58, 167, 177, 0.2);
 }
 
 .submit-btn {
@@ -60,41 +47,28 @@ input[type="text"]:focus {
     border-radius: 25px;
     color: #fff;
     cursor: pointer;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 11px;
     letter-spacing: 1px;
     margin-top: 20px;
     padding: 15px 50px;
     text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-.submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.submit-btn:active {
-    transform: translateY(0);
 }
 
 #login .submit-btn {
-    background: linear-gradient(135deg, #3aa7b1, #2d8a93);
+    background: #3aa7b1;
 }
 
 #register .submit-btn {
-    background: linear-gradient(135deg, #3aaf9f, #2d8a7f);
+    background: #3aaf9f;
 }
 
 #container {
     background: #ededed;
-    border-radius: 20px;
+    border-radius: 10px;
     height: 550px;
     margin: 5% auto;
     overflow: hidden;
     width: 1000px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
 }
 
 .social-login {
@@ -137,29 +111,23 @@ input[type="text"]:focus {
 }
 
 #forgot-pass {
-    border-bottom: 2px solid #ccc;
-    color: #666;
-    font-size: 13px;
+    border-bottom: 1px solid #ccc;
+    color: #000;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.3px;
     padding: 3px;
     text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-#forgot-pass:hover {
-    color: #3aa7b1;
-    border-bottom-color: #3aa7b1;
 }
 
 #cover {
-    background: linear-gradient(135deg, #3aa7b1, #2d8a93);
+    background: #3aa7b1;
     color: #fff;
     height: 550px;
     margin: 0 0 0 50%;
     position: relative;
     text-align: center;
-    transition: all 0.5s ease-in-out;
+    transition: margin 0.7s, background 0.5s, display 1s, width 1s;
     width: 50%;
     z-index: 5;
 }
@@ -179,7 +147,7 @@ input[type="text"]:focus {
 }
 
 #cover.active {
-    background: linear-gradient(135deg, #2d8a7f, #1f665f);
+    background: #3aaf9f;
     margin: 0;
 }
 
@@ -194,18 +162,16 @@ input[type="text"]:focus {
 /* Dark Theme Styles */
 .dark-theme {
     background: #121212;
-    transition: background-color 0.3s ease;
 }
 
 .dark-theme #container {
     background: #1a1a1a;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .dark-theme #login,
 .dark-theme #register {
     background: #242424;
-    transition: background-color 0.3s ease;
 }
 
 .dark-theme #login h1,
@@ -213,19 +179,20 @@ input[type="text"]:focus {
     color: #fff;
 }
 
+.dark-theme #login h1 {
+    color: #4ac1cc;
+}
+
+.dark-theme #register h1 {
+    color: #4ac1cc;
+}
+
 .dark-theme input[type="email"],
 .dark-theme input[type="password"],
 .dark-theme input[type="text"] {
     background: #333;
     color: #fff;
-    border: 2px solid #444;
-}
-
-.dark-theme input[type="email"]:focus,
-.dark-theme input[type="password"]:focus,
-.dark-theme input[type="text"]:focus {
-    border-color: #4ac1cc;
-    box-shadow: 0 0 0 3px rgba(74, 193, 204, 0.2);
+    border: 1px solid #444;
 }
 
 .dark-theme input::placeholder {
@@ -238,32 +205,18 @@ input[type="text"]:focus {
 }
 
 .dark-theme #forgot-pass {
-    color: #888;
+    color: #4ac1cc;
     border-bottom-color: #444;
 }
 
-.dark-theme #forgot-pass:hover {
-    color: #4ac1cc;
-    border-bottom-color: #4ac1cc;
-}
-
 .dark-theme .submit-btn {
-    background: linear-gradient(135deg, #4ac1cc, #3aa7b1);
-}
-
-.dark-theme .submit-btn:hover {
-    box-shadow: 0 5px 15px rgba(74, 193, 204, 0.2);
+    background: #4ac1cc;
 }
 
 .dark-theme #cover {
-    background: linear-gradient(135deg, #2d8a93, #1f5f66);
+    background: #242424;
 }
 
 .dark-theme #cover.active {
-    background: linear-gradient(135deg, #2d8a7f, #1f665f);
-}
-
-/* Smooth Transitions */
-* {
-    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #242424;
 }

@@ -374,33 +374,49 @@ muteButton.addEventListener("click", function() {
         muteButton.textContent = "🔊 Unmute";
     } else {
         video.muted = true;
-        muteButton.textContent = "�� Mute";
+        muteButton.textContent = "🔇 Mute";
     }
 });
 
-// Theme Switching
-document.addEventListener("DOMContentLoaded", function() {
-    const themeToggle = document.getElementById("theme-toggle");
+// Smooth scroll for Book Now button
+document.addEventListener('DOMContentLoaded', function() {
+    const bookNowBtn = document.querySelector('.book-now-btn');
     
-    // Check for saved theme preference
-    const currentTheme = localStorage.getItem("theme") || "light";
-    document.body.classList.toggle("dark-theme", currentTheme === "dark");
-    updateThemeToggle(currentTheme === "dark");
+    if (bookNowBtn) {
+        bookNowBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const bookingSection = document.querySelector('#book-parking');
+            const headerOffset = 70; // Account for fixed header height
+            const elementPosition = bookingSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-    // Theme toggle click handler
-    themeToggle.addEventListener("click", function(e) {
-        e.preventDefault();
-        const isDark = document.body.classList.toggle("dark-theme");
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-        updateThemeToggle(isDark);
-    });
-
-    // Update toggle button text and icon
-    function updateThemeToggle(isDark) {
-        const icon = themeToggle.querySelector("i");
-        icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
-        themeToggle.innerHTML = `${icon.outerHTML}${isDark ? "Light Mode" : "Dark Mode"}`;
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        });
     }
+});
+
+// Header Scroll Effect
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('header');
+    const scrollThreshold = 50; // Adjust this value to change when the header changes
+
+    function handleScroll() {
+        if (window.scrollY > scrollThreshold) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+
+    // Initial check
+    handleScroll();
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
 });
 
 
