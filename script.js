@@ -349,11 +349,54 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// for responsive header 
+// Improved mobile menu toggle
 function toggleMenu() {
-    var navList = document.querySelector('.nav-list');
+    const navList = document.querySelector('.nav-list');
+    const hamburger = document.querySelector('.hamburger');
+    
     navList.classList.toggle('active');
+    
+    // Change hamburger icon to X when menu is open
+    if (navList.classList.contains('active')) {
+        hamburger.innerHTML = '&times;';
+        hamburger.style.fontSize = '28px';
+        // Prevent body scrolling when menu is open on mobile
+        document.body.style.overflow = 'hidden';
+    } else {
+        hamburger.innerHTML = '&#9776;';
+        hamburger.style.fontSize = '24px';
+        document.body.style.overflow = '';
+    }
 }
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const navList = document.querySelector('.nav-list');
+    const hamburger = document.querySelector('.hamburger');
+    
+    // If menu is open and click is outside menu and not on hamburger
+    if (navList.classList.contains('active') && 
+        !navList.contains(event.target) && 
+        !hamburger.contains(event.target)) {
+        navList.classList.remove('active');
+        hamburger.innerHTML = '&#9776;';
+        hamburger.style.fontSize = '24px';
+        document.body.style.overflow = '';
+    }
+});
+
+// Close mobile menu when window is resized to desktop size
+window.addEventListener('resize', function() {
+    const navList = document.querySelector('.nav-list');
+    const hamburger = document.querySelector('.hamburger');
+    
+    if (window.innerWidth > 768 && navList.classList.contains('active')) {
+        navList.classList.remove('active');
+        hamburger.innerHTML = '&#9776;';
+        hamburger.style.fontSize = '24px';
+        document.body.style.overflow = '';
+    }
+});
 
 //parallax video effect
 window.addEventListener("scroll", function() {
@@ -417,6 +460,96 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
+});
+
+// Dark mode toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggleBtn = document.querySelector('#theme-toggle');
+    const body = document.body;
+    const themeIcon = themeToggleBtn.querySelector('i');
+
+    // Check for saved theme preference or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.classList.toggle('dark-theme', savedTheme === 'dark');
+    updateThemeIcon(savedTheme === 'dark');
+
+    themeToggleBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isDark = body.classList.toggle('dark-theme');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateThemeIcon(isDark);
+    });
+
+    function updateThemeIcon(isDark) {
+        themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        themeToggleBtn.innerHTML = `<i class="${themeIcon.className}"></i>${isDark ? 'Light Mode' : 'Dark Mode'}`;
+    }
+});
+
+// Responsive map handling
+window.addEventListener('resize', function() {
+    // Invalidate map size when window is resized
+    if (map) {
+        setTimeout(() => map.invalidateSize(), 100);
+    }
+    
+    // Adjust fullscreen map size for mobile
+    if (isFullscreen) {
+        const mapElement = document.getElementById('map');
+        if (window.innerWidth < 768) {
+            mapElement.style.width = '90vw';
+            mapElement.style.height = '70vh';
+        } else {
+            mapElement.style.width = '80vw';
+            mapElement.style.height = '80vh';
+        }
+    }
+});
+
+// Make booking form more responsive
+document.addEventListener('DOMContentLoaded', function() {
+    const bookingForm = document.getElementById('booking-form');
+    const searchBox = document.getElementById('search-box');
+    const searchBtn = document.getElementById('search-btn');
+    
+    // Adjust search box and button for small screens
+    function adjustSearchLayout() {
+        if (window.innerWidth < 576) {
+            searchBox.style.width = '70%';
+            searchBtn.style.width = '30%';
+        } else {
+            searchBox.style.width = '';
+            searchBtn.style.width = '';
+        }
+    }
+    
+    // Initial adjustment
+    adjustSearchLayout();
+    
+    // Adjust on resize
+    window.addEventListener('resize', adjustSearchLayout);
+    
+    // Make confirmation overlay responsive
+    const confirmationOverlay = document.getElementById('confirmation-overlay');
+    if (confirmationOverlay) {
+        const confirmationBox = confirmationOverlay.querySelector('.confirmation-box');
+        
+        function adjustConfirmationBox() {
+            if (window.innerWidth < 576) {
+                confirmationBox.style.width = '90%';
+                confirmationBox.style.padding = '20px';
+            } else {
+                confirmationBox.style.width = '';
+                confirmationBox.style.padding = '';
+            }
+        }
+        
+        // Initial adjustment
+        adjustConfirmationBox();
+        
+        // Adjust on resize
+        window.addEventListener('resize', adjustConfirmationBox);
+    }
 });
 
 

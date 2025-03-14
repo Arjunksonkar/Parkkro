@@ -829,3 +829,295 @@ ul a{
     height: 50px;
     width: 100px;
 }
+
+/* Dark Theme Styles */
+.dark-theme {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-theme header:not(.scrolled) {
+    background: rgba(26, 26, 26, 0.8);
+}
+
+.dark-theme header.scrolled {
+    background: linear-gradient(-20deg, #000000 0%, #2b2b2b 100%);
+    border-bottom: 3px solid #1a1a1a;
+}
+
+.dark-theme .nav-list a {
+    color: #e0e0e0;
+}
+
+.dark-theme .nav-list a:hover {
+    background: #333333;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.dark-theme .park {
+    color: #e0e0e0;
+}
+
+.dark-theme .dropdown-menu {
+    background: linear-gradient(-20deg, #1a1a1a 0%, #2b2b2b 100%);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .dropdown-menu::before {
+    background: linear-gradient(-20deg, #1a1a1a 0%, #2b2b2b 100%);
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .dropdown-menu a {
+    color: #e0e0e0;
+}
+
+.dark-theme .dropdown-menu a:hover {
+    background: #333333;
+    color: #ffffff;
+}
+
+.dark-theme .dropdown-menu hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .book-now-btn {
+    background: linear-gradient(-45deg, #1a1a1a, #2b2b2b, #1a1a1a, #2b2b2b);
+    color: #e0e0e0 !important;
+}
+
+.dark-theme .book-now-btn:hover {
+    background: #333333;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Icon Styles */
+.fas {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+#theme-toggle i {
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover i {
+    transform: rotate(180deg);
+}
+
+/* Responsive Design - Global Styles */
+@media (max-width: 1200px) {
+    .park {
+        font-size: 26px;
+        padding-left: 50%;
+    }
+    
+    .nav-list {
+        gap: 15px;
+    }
+    
+    #map {
+        width: 45%;
+    }
+    
+    .book-container {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 992px) {
+    header {
+        padding: 0 1rem;
+    }
+    
+    .park {
+        font-size: 24px;
+        padding-left: 20%;
+    }
+    
+    .nav-list {
+        gap: 10px;
+    }
+    
+    .nav-list a {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+    
+    .profile-icon {
+        width: 34px;
+        height: 34px;
+    }
+    
+    #book-parking {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #map {
+        width: 90%;
+        margin: 20px auto;
+        height: 350px;
+    }
+    
+    .book-container {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    
+    .bookings-container, .history-container {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        height: 50px;
+    }
+    
+    .park {
+        font-size: 22px;
+        padding-left: 0;
+    }
+    
+    .profile-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .dropdown-menu {
+        width: 200px;
+        right: 0;
+    }
+    
+    .dropdown-menu a {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+    
+    .content {
+        width: 90vw;
+        font-size: 1.5rem;
+    }
+    
+    .book-now-btn {
+        padding: 6px 12px !important;
+        font-size: 14px !important;
+    }
+    
+    /* Improved mobile menu */
+    .nav-list {
+        background: rgba(0, 0, 0, 0.9);
+        top: 50px;
+    }
+    
+    .nav-list.active {
+        padding: 10px 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .nav-list li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-list a {
+        width: 100%;
+        display: block;
+        padding: 12px 0;
+        color: white;
+    }
+    
+    .dark-theme .nav-list {
+        background: rgba(0, 0, 0, 0.95);
+    }
+}
+
+@media (max-width: 576px) {
+    .park {
+        font-size: 20px;
+    }
+    
+    .hamburger {
+        margin-left: 10px;
+    }
+    
+    .profile-container {
+        padding-right: 10px;
+    }
+    
+    .content {
+        height: 50vh;
+        font-size: 1.2rem;
+    }
+    
+    .searchb input {
+        width: 70%;
+    }
+    
+    #booking-form input, #booking-form button {
+        width: 100%;
+    }
+    
+    .confirmation-box {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .checkmark-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .checkmark {
+        width: 30px;
+        height: 15px;
+        top: 15px;
+        left: 15px;
+    }
+    
+    #car-image {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .foot-panel {
+        height: auto;
+        padding: 15px 0;
+    }
+    
+    .pages a {
+        display: block;
+        padding: 5px 0;
+    }
+}
+
+/* Fix for very small screens */
+@media (max-width: 360px) {
+    .park {
+        font-size: 18px;
+    }
+    
+    .profile-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .dropdown-menu {
+        width: 180px;
+    }
+    
+    .dropdown-menu a {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+    .book-now-btn {
+        padding: 4px 8px !important;
+        font-size: 12px !important;
+    }
+}
