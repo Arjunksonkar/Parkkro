@@ -859,6 +859,55 @@
                 min-height: auto;
             }
         }
+
+        /* Responsive Styles for Contact Page */
+        @media (max-width: 992px) {
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .contact-form, .contact-info {
+                width: 100%;
+                max-width: 600px;
+                margin: 20px auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-form, .contact-info {
+                padding: 20px;
+            }
+            
+            .contact-form h2, .contact-info h2 {
+                font-size: 24px;
+            }
+            
+            .contact-info p {
+                font-size: 16px;
+            }
+            
+            .social-links a {
+                margin: 0 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .contact-form input, 
+            .contact-form textarea, 
+            .contact-form button {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .contact-info .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info .info-item i {
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
 <body>
