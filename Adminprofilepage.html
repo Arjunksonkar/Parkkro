@@ -125,7 +125,7 @@
         input:disabled {
             background: #f8f9fa;
         }
-        .btn {
+        .button {
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -134,7 +134,7 @@
             transition: all 0.3s ease;
         }
 
-        .btn-primary {
+        .primary-button {
             background: #e74c3c;
             color: white;
             padding: 10px 20px;
@@ -144,7 +144,7 @@
             font-weight: bold;
         }
 
-        .btn-primary:hover {
+        .primary-button:hover {
             background: #c0392b;
         }
 
@@ -201,7 +201,7 @@
                 <div id="adminProfile" class="content-section">
                     <div class="profile-header">
                         <h2>Admin Profile</h2>
-                        <button class="btn-primary" onclick="toggleEdit()" id="editBtn">Edit Profile</button>
+                        <button class="primary-button" onclick="toggleEdit()" id="editBtn">Edit Profile</button>
                     </div>
                     <form id="adminProfileForm">
                         <div class="form-group">
@@ -216,7 +216,7 @@
                             <label>Phone Number</label>
                             <input type="tel" id="adminPhone" value="+91 9876543210" disabled>
                         </div>
-                        <button type="button" class="btn-primary" onclick="saveAdminProfile()" id="saveBtn" style="display: none;">
+                        <button type="button" class="primary-button" onclick="saveAdminProfile()" id="saveBtn" style="display: none;">
                             Save Changes
                         </button>
                     </form>
@@ -248,11 +248,31 @@
 
         function saveAdminProfile() {
             document.getElementById('headerAdminName').textContent = document.getElementById('adminFullName').value;
-            toggleEdit();
+            
+            // Disable inputs and update button states
+            let inputs = document.querySelectorAll('#adminProfileForm input');
+            inputs.forEach(input => input.disabled = true);
+            document.getElementById('editBtn').textContent = 'Edit Profile';
+            document.getElementById('saveBtn').style.display = 'none';
+            
+            // Here you would typically send the data to a server
+            alert('Admin profile updated successfully!');
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('adminAvatarPreview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
         }
 
         function logout() {
-            window.location.href = '/admin-login';
+            // Redirect to logout page or clear session
+            window.location.href = 'logout.html';
         }
     </script>
 </body>

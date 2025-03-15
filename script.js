@@ -1,104 +1,133 @@
 // Initialize Map with custom options
-var map = L.map('map', {
-    zoomControl: false,
-    minZoom: 3,
-    maxZoom: 18
-}).setView([28.6139, 77.2090], 12);
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        // Check if map element exists
+        const mapElement = document.getElementById('map');
+        if (!mapElement) {
+            console.error('Map container not found!');
+            return;
+        }
 
-// Custom zoom control
-L.control.zoom({
-    position: 'bottomright'
-}).addTo(map);
+        // Initialize the map
+        var map = L.map('map', {
+            zoomControl: false,
+            minZoom: 3,
+            maxZoom: 18
+        }).setView([28.6139, 77.2090], 12);
 
-// Add OpenStreetMap Tiles
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+        // Custom zoom control
+        L.control.zoom({
+            position: 'bottomright'
+        }).addTo(map);
 
-let marker;
-let isFullscreen = false;
+        // Add OpenStreetMap Tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-// Create map overlay
-const mapOverlay = document.createElement('div');
-mapOverlay.className = 'map-overlay';
-document.body.appendChild(mapOverlay);
+        let marker;
+        let isFullscreen = false;
 
-// Function to toggle fullscreen
-function toggleFullscreen(event) {
-    const mapElement = document.getElementById('map');
-    
-    // Don't toggle if clicking on popup or marker
-    if (event && (
-        event.target.classList.contains('leaflet-popup') || 
-        event.target.closest('.leaflet-popup') || 
-        event.target.closest('.leaflet-marker-icon')
-    )) {
-        return;
-    }
-    
-    isFullscreen = !isFullscreen;
-    
-    if (isFullscreen) {
-        mapElement.classList.add('fullscreen');
-        mapOverlay.classList.add('active');
+        // Create map overlay
+        const mapOverlay = document.createElement('div');
+        mapOverlay.className = 'map-overlay';
+        document.body.appendChild(mapOverlay);
+
+        // Function to toggle fullscreen
+        function toggleFullscreen(event) {
+            const mapElement = document.getElementById('map');
+            
+            // Don't toggle if clicking on popup or marker
+            if (event && (
+                event.target.classList.contains('leaflet-popup') || 
+                event.target.closest('.leaflet-popup') || 
+                event.target.closest('.leaflet-marker-icon')
+            )) {
+                return;
+            }
+            
+            isFullscreen = !isFullscreen;
+            
+            if (isFullscreen) {
+                mapElement.classList.add('fullscreen');
+                mapOverlay.classList.add('active');
+                setTimeout(() => {
+                    map.invalidateSize();
+                    if (marker) {
+                        map.setView(marker.getLatLng(), map.getZoom());
+                    }
+                }, 300);
+            } else {
+                mapElement.classList.remove('fullscreen');
+                mapOverlay.classList.remove('active');
+                setTimeout(() => map.invalidateSize(), 300);
+            }
+        }
+
+        // Map click handler
+        map.on('click', function(e) {
+            const lat = e.latlng.lat;
+            const lng = e.latlng.lng;
+            
+            // Remove existing marker if any
+            if (marker) map.removeLayer(marker);
+            
+            // Add new marker
+            marker = L.marker([lat, lng]).addTo(map);
+            
+            // Reverse geocode to get address
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+                .then(response => response.json())
+                .then(data => {
+                    let placeName = data.display_name || 'Selected Location';
+                    
+                    // Update form fields with location data
+                    document.getElementById('selected-location').textContent = placeName;
+                    document.getElementById('latitude').value = lat;
+                    document.getElementById('longitude').value = lng;
+                    
+                    // Show popup on map
+                    marker.bindPopup(`<div class="map-popup">${placeName}</div>`).openPopup();
+                })
+                .catch(error => {
+                    console.error('Error fetching location data:', error);
+                    marker.bindPopup('<div class="map-popup">Selected Location</div>').openPopup();
+                });
+        });
+
+        // Add click handler to map container to open fullscreen
+        document.getElementById('map').addEventListener('click', function(event) {
+            if (!isFullscreen && !event.target.classList.contains('leaflet-popup') &&
+                !event.target.closest('.leaflet-popup') &&
+                !event.target.closest('.leaflet-marker-icon')) {
+                toggleFullscreen(event);
+            }
+        });
+
+        // Add click handler to overlay to close fullscreen
+        mapOverlay.addEventListener('click', function(event) {
+            if (event.target === mapOverlay && isFullscreen) {
+                toggleFullscreen();
+            }
+        });
+
+        // Add click handler to close button
+        document.querySelector('.map-close-btn').addEventListener('click', function() {
+            if (isFullscreen) {
+                toggleFullscreen();
+            }
+        });
+
+        console.log('Map initialized successfully');
+        
+        // Force a resize to ensure the map renders correctly
         setTimeout(() => {
             map.invalidateSize();
-            if (marker) {
-                map.setView(marker.getLatLng(), map.getZoom());
-            }
-        }, 300);
-    } else {
-        mapElement.classList.remove('fullscreen');
-        mapOverlay.classList.remove('active');
-        setTimeout(() => map.invalidateSize(), 300);
-    }
-}
-
-// Map click handler
-map.on('click', function(e) {
-    const lat = e.latlng.lat.toFixed(5);
-    const lng = e.latlng.lng.toFixed(5);
-
-    // Remove previous marker
-    if (marker) map.removeLayer(marker);
-
-    // Add new marker
-    marker = L.marker([lat, lng]).addTo(map);
-
-    // Fetch place details
-    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
-        .then(response => response.json())
-        .then(data => {
-            const placeName = data.display_name || `Lat: ${lat}, Lng: ${lng}`;
-            
-            // Update form fields
-            document.getElementById("location").value = placeName;
-            document.getElementById("search-box").value = placeName;
-
-            // Show simple popup with just the location name
-            marker.bindPopup(`<div class="map-popup">${placeName}</div>`).openPopup();
-
-            // Close fullscreen if marker is clicked in fullscreen mode
-            marker.on('click', () => {
-                if (isFullscreen) toggleFullscreen();
-            });
-        })
-        .catch(error => console.error("Error fetching location:", error));
-});
-
-// Add click handler to map container to open fullscreen
-document.getElementById('map').addEventListener('click', function(event) {
-    if (!isFullscreen && !event.target.classList.contains('leaflet-popup') && 
-        !event.target.closest('.leaflet-popup') && 
-        !event.target.closest('.leaflet-marker-icon')) {
-        toggleFullscreen();
-    }
-});
-
-// Close fullscreen when clicking overlay
-mapOverlay.addEventListener('click', function(event) {
-    if (event.target === mapOverlay && isFullscreen) {
-        toggleFullscreen();
+            console.log('Map size invalidated');
+        }, 500);
+        
+    } catch (error) {
+        console.error('Error initializing map:', error);
     }
 });
 
