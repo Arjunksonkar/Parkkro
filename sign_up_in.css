@@ -1,0 +1,606 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+    background: #f0f4f3;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Background Video Styling */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.9);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.theme-toggle-btn i {
+    font-size: 20px;
+    color: #fff;
+    transition: transform 0.5s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-btn:hover i {
+    transform: rotate(360deg);
+}
+
+/* Home Button */
+.home-button-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+}
+
+.home-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    text-decoration: none;
+}
+
+.home-button i {
+    font-size: 20px;
+    color: #fff;
+}
+
+.home-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button {
+    border: 1px solid #fff;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 15px 60px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+input[type="email"], input[type="password"], input[type="text"] {
+    background: #f4f8f7;
+    border: none;
+    border-radius: 5px;
+    font-weight: 300;
+    margin: 8px 0;
+    padding: 12px;
+    width: 280px;
+    transition: all 0.3s ease;
+}
+
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(58, 167, 177, 0.3);
+}
+
+.submit-btn {
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    padding: 15px 50px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#login .submit-btn {
+    background: #3aa7b1;
+}
+
+#register .submit-btn {
+    background: #3aaf9f;
+}
+
+#container {
+    background: #ededed;
+    border-radius: 10px;
+    height: 550px;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 1000px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.social-login {
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    height: 30px;
+    padding: 10px;
+    width: 30px;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.social-login:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+#login, #register {
+    background: #fff;
+    float: left;
+    height: 100%;
+    position: relative;
+    width: 50%;
+    text-align: center;
+    top: -550px;
+    z-index: 1;
+    padding: 20px;
+    transition: all 0.5s ease;
+}
+
+#login h1, #register h1 {
+    padding: 20% 0 25px;
+    font-weight: 500;
+}
+
+#login h1 {
+    color: #3aa7b1;
+}
+
+#register h1 {
+    color: #3aaf9f;
+}
+
+#login p, #register p {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    padding: 20px;
+    color: #666;
+}
+
+#forgot-pass {
+    border-bottom: 1px solid #ccc;
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    padding: 3px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#forgot-pass:hover {
+    color: #3aa7b1;
+    border-color: #3aa7b1;
+}
+
+#cover {
+    background: linear-gradient(135deg, #3aa7b1, #3aaf9f);
+    color: #fff;
+    height: 550px;
+    margin: 0 0 0 50%;
+    position: relative;
+    text-align: center;
+    transition: margin 0.7s, background 0.5s, display 1s, width 1s;
+    width: 50%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#cover h1 {
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+#cover p {
+    font-weight: 300;
+    line-height: 22px;
+    padding: 30px 45px 40px;
+    opacity: 0.9;
+}
+
+.sign-in {
+    display: none;
+}
+
+#cover.active {
+    background: linear-gradient(135deg, #3aaf9f, #3aa7b1);
+    margin: 0;
+}
+
+#cover.active .sign-up {
+    display: none;
+}
+
+#cover.active .sign-in {
+    display: inline-block;
+}
+
+/* Dark Theme Styles */
+.dark-theme {
+    background: #121212;
+}
+
+.dark-theme #bg-video {
+    filter: brightness(0.6) contrast(1.2);
+}
+
+.dark-theme .theme-toggle-btn {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme .theme-toggle-btn i {
+    color: #ffcc00;
+}
+
+.dark-theme .home-button {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme .home-button i {
+    color: #e0e0e0;
+}
+
+.dark-theme #container {
+    background: #1a1a1a;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.dark-theme #login,
+.dark-theme #register {
+    background: #242424;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme #login h1 {
+    color: #4ac1cc;
+    text-shadow: 0 0 10px rgba(74, 193, 204, 0.3);
+}
+
+.dark-theme #register h1 {
+    color: #4ac1cc;
+    text-shadow: 0 0 10px rgba(74, 193, 204, 0.3);
+}
+
+.dark-theme input[type="email"],
+.dark-theme input[type="password"],
+.dark-theme input[type="text"] {
+    background: #333;
+    color: #fff;
+    border: 1px solid #444;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme input::placeholder {
+    color: #888;
+}
+
+.dark-theme input[type="email"]:focus,
+.dark-theme input[type="password"]:focus,
+.dark-theme input[type="text"]:focus {
+    box-shadow: 0 0 0 2px rgba(74, 193, 204, 0.3);
+    border-color: #4ac1cc;
+}
+
+.dark-theme #login p,
+.dark-theme #register p {
+    color: #bbb;
+}
+
+.dark-theme #forgot-pass {
+    color: #4ac1cc;
+    border-bottom-color: #444;
+}
+
+.dark-theme #forgot-pass:hover {
+    color: #5fdbea;
+    border-color: #5fdbea;
+}
+
+.dark-theme .submit-btn {
+    background: linear-gradient(135deg, #4ac1cc, #3aa7b1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .submit-btn:hover {
+    background: linear-gradient(135deg, #5fdbea, #4ac1cc);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme #cover {
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark-theme #cover.active {
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+}
+
+.dark-theme .button {
+    border-color: #4ac1cc;
+    color: #4ac1cc;
+}
+
+.dark-theme .button:hover {
+    background: rgba(74, 193, 204, 0.1);
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1000px) {
+    #container {
+        width: 90%;
+        height: auto;
+        min-height: 550px;
+    }
+    
+    #login, #register {
+        width: 100%;
+        top: 0;
+        padding: 40px 20px;
+    }
+    
+    #cover {
+        width: 100%;
+        height: 50%;
+        margin: 0;
+        position: absolute;
+        bottom: 0;
+        top: auto;
+    }
+    
+    #cover.active {
+        top: 0;
+        bottom: auto;
+    }
+    
+    #cover h1 {
+        padding-top: 10%;
+    }
+}
+
+@media (max-width: 768px) {
+    #container {
+        width: 95%;
+        max-width: 500px;
+        min-height: 650px;
+    }
+    
+    #login, #register {
+        padding: 30px 15px;
+    }
+    
+    #login h1, #register h1 {
+        padding: 10% 0 15px;
+        font-size: 24px;
+    }
+    
+    input[type="email"], input[type="password"], input[type="text"] {
+        width: 90%;
+        max-width: 280px;
+    }
+    
+    .button {
+        padding: 12px 40px;
+    }
+    
+    .submit-btn {
+        padding: 12px 40px;
+    }
+    
+    #cover {
+        height: 45%;
+    }
+    
+    #cover h1 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    
+    #cover p {
+        font-size: 14px;
+        padding: 15px 20px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    #container {
+        min-height: 600px;
+    }
+    
+    .theme-toggle-container, .home-button-container {
+        top: 15px;
+    }
+    
+    .theme-toggle-btn, .home-button {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .theme-toggle-btn i, .home-button i {
+        font-size: 18px;
+    }
+    
+    #login h1, #register h1 {
+        font-size: 22px;
+    }
+    
+    #login p, #register p {
+        font-size: 11px;
+        padding: 15px 10px;
+    }
+    
+    input[type="email"], input[type="password"], input[type="text"] {
+        padding: 10px;
+        margin: 6px 0;
+    }
+    
+    .button {
+        padding: 10px 30px;
+        font-size: 10px;
+    }
+    
+    .submit-btn {
+        padding: 10px 30px;
+        font-size: 10px;
+    }
+    
+    #cover h1 {
+        font-size: 20px;
+    }
+    
+    #cover p {
+        font-size: 12px;
+        padding: 10px 15px 15px;
+        line-height: 18px;
+    }
+}
+
+@media (max-width: 360px) {
+    #container {
+        min-height: 550px;
+    }
+    
+    .theme-toggle-btn, .home-button {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .theme-toggle-btn i, .home-button i {
+        font-size: 16px;
+    }
+    
+    #login h1, #register h1 {
+        font-size: 20px;
+    }
+    
+    input[type="email"], input[type="password"], input[type="text"] {
+        width: 95%;
+        padding: 8px;
+    }
+    
+    #cover {
+        height: 40%;
+    }
+    
+    #cover h1 {
+        font-size: 18px;
+    }
+    
+    #cover p {
+        font-size: 11px;
+        padding: 8px 10px 12px;
+    }
+    
+    .button {
+        padding: 8px 25px;
+        font-size: 9px;
+    }
+    
+    .submit-btn {
+        padding: 8px 25px;
+        font-size: 9px;
+    }
+}
+
+/* Fix for very small screens and landscape orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+    #container {
+        height: auto;
+        min-height: 400px;
+        margin: 60px auto;
+    }
+    
+    #login, #register {
+        padding: 20px 15px;
+    }
+    
+    #login h1, #register h1 {
+        padding: 5% 0 10px;
+    }
+    
+    #cover {
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    #cover h1 {
+        padding-top: 5%;
+    }
+    
+    #cover p {
+        padding: 10px 20px;
+    }
+    
+    .button {
+        margin-bottom: 10px;
+    }
+}

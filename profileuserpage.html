@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkkro - User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f6fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .user-header-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Profile Section */
+        .profile-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar Navigation */
+        .profile-sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            padding: 12px;
+            margin: 8px 0;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: #3498db;
+            color: white;
+        }
+
+        /* Main Content */
+        .profile-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar-wrapper {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #3498db; /* Outer border around the profile image */
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input:disabled {
+            background: #f8f9fa;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        /* Booking History */
+        .booking-card {
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-sidebar {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">Parkkro</div>
+            <div class="user-header-info">
+                <i class="fas fa-bell"></i>
+                <span id="headerUserName">John Doe</span> <!-- Updated to dynamically change -->
+                <div class="avatar-wrapper" onclick="document.getElementById('profileImage').click();">
+                    <img src="https://via.placeholder.com/100" alt="avatar" class="avatar" id="avatarPreview">
+                    <!-- Hidden file input -->
+                    <input type="file" id="profileImage" style="display: none;" onchange="previewImage(event)">
+                </div>
+            </div>
+        </header>
+
+        <div class="profile-container">
+            <nav class="profile-sidebar">
+                <div class="nav-item active" onclick="showSection('profile')">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </div>
+                <div class="nav-item" onclick="showSection('bookings')">
+                    <i class="fas fa-history"></i>
+                    Booking History
+                </div>
+                <div class="nav-item" onclick="showSection('payment')">
+                    <i class="fas fa-credit-card"></i>
+                    Payment Methods
+                </div>
+                <div class="nav-item" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </div>
+                <div class="nav-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </div>
+            </nav>
+
+            <main class="profile-content" id="main-content">
+                <!-- Profile Section -->
+                <div id="profile" class="content-section">
+                    <div class="profile-header">
+                        <h2>My Profile</h2>
+                        <button class="btn btn-primary" onclick="toggleEdit()" id="editBtn">Edit Profile</button>
+                    </div>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="fullName" value="John Doe" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="email" value="john@example.com" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="phone" value="+1 234 567 890" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>License Plate</label>
+                            <input type="text" id="license" value="ABC-1234" disabled>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="saveProfile()" id="saveBtn" style="display: none;">
+                            Save Changes
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Booking History (Hidden by default) -->
+                <div id="bookings" class="content-section" style="display: none;">
+                    <h2>Booking History</h2>
+                    <div class="booking-card">
+                        <div class="booking-header">
+                            <h4>Central Parking Lot</h4>
+                            <span class="status completed">Completed</span>
+                        </div>
+                        <p>Date: 2023-08-15</p>
+                        <p>Duration: 2 hours</p>
+                        <p>Total: $8.00</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Section Switching
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Update active navigation item
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+        // Edit Profile Functionality
+        let isEditing = false;
+        
+        function toggleEdit() {
+            const inputs = document.querySelectorAll('#profileForm input');
+            const editBtn = document.getElementById('editBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            
+            isEditing = !isEditing;
+            inputs.forEach(input => {
+                input.disabled = !isEditing;
+            });
+            
+            if(isEditing) {
+                editBtn.textContent = 'Cancel';
+                saveBtn.style.display = 'inline-block';
+            } else {
+                editBtn.textContent = 'Edit Profile';
+                saveBtn.style.display = 'none';
+            }
+        }
+
+        function saveProfile() {
+            // Save updated name to the header as well
+            const updatedName = document.getElementById('fullName').value;
+            document.getElementById('headerUserName').textContent = updatedName;
+
+            // Add validation here
+            toggleEdit();
+            showNotification('Profile updated successfully!');
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function logout() {
+            // Add logout logic here
+            window.location.href = '/login';
+        }
+
+        // Image Upload Preview
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                document.getElementById('avatarPreview').src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>
